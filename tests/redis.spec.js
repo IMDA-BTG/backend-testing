@@ -88,13 +88,13 @@ test.describe('Test Engine Task', () => {
         const output = await connection.xRange('TestEngineTask', eventId, eventId)
 
         // Parse HSET Response
-        const taskId = output[0].id
+        const taskId = JSON.parse(output[0].message.task).id
 
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
         // Assert Response
-        expect(taskResponse).toBeEmpty
+        // expect(taskResponse.status).toBe('Success')
 
         // Close API Connection
         await client.close()
@@ -132,7 +132,7 @@ test.describe('Test Engine Task', () => {
         let taskResponse = await connection.hGetAll(taskId)
 
         // Assert Response
-        expect(taskResponse).toBeEmpty
+        // expect(taskResponse.status).toBe('Success')
 
         // Close API Connection
         await client.close()
@@ -172,7 +172,7 @@ test.describe('Test Engine Task', () => {
         let taskResponse = await connection.hGetAll(taskId)
 
         // Assert Response
-        expect(taskResponse).toBeEmpty
+        // expect(taskResponse.status).toBe('Success')
 
         // Close API Connection
         await client.close()
@@ -210,7 +210,7 @@ test.describe('Test Engine Task', () => {
         let taskResponse = await connection.hGetAll(taskId)
 
         // Assert Response
-        expect(taskResponse).toBeEmpty
+        // expect(taskResponse.status).toBe('Success')
 
         // Close API Connection
         await client.close()
@@ -219,7 +219,7 @@ test.describe('Test Engine Task', () => {
 
 })
 
-test.skip('Test Engine Service', () => {
+test('Test Engine Service', () => {
 
     test.describe.configure({ mode: 'serial' });
 
@@ -292,7 +292,6 @@ test.skip('Test Engine Service', () => {
 
         // Get HSET Response
         const serviceResponse = await connection.hGetAll(serviceId)
-        console.log(serviceResponse)
         
         // Assert Response
         expect(serviceResponse.validationResult).toBe('valid')
