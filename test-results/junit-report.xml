@@ -1,0 +1,34 @@
+<testsuites id="" name="" tests="9" failures="0" skipped="2" errors="0" time="6.466609999999404">
+<testsuite name="redis.spec.js" timestamp="1683967084702" hostname="" tests="9" failures="0" skipped="2" time="6.09" errors="0">
+<testcase name="Test Engine Task Test Engine Task with Valid Inputs (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Test Engine Task with Valid Inputs (Upload)" time="6.077">
+</testcase>
+<testcase name="Test Engine Task Invalid Data File (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Data File (Upload)" time="0.002">
+</testcase>
+<testcase name="Test Engine Task Invalid Model File (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Model File (Upload)" time="0.002">
+</testcase>
+<testcase name="Test Engine Task Invalid Input Schema (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Input Schema (Upload)" time="0.002">
+</testcase>
+<testcase name="Test Engine Task Invalid Algorithm ID (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Algorithm ID (Upload)" time="0.002">
+</testcase>
+<testcase name="Test Engine Service Validate Dataset" classname="[chromium] › redis.spec.js › Test Engine Service › Validate Dataset" time="0.002">
+</testcase>
+<testcase name="Test Engine Service Invalid Dataset" classname="[chromium] › redis.spec.js › Test Engine Service › Invalid Dataset" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Test Engine Service Validate Model" classname="[chromium] › redis.spec.js › Test Engine Service › Validate Model" time="0.003">
+</testcase>
+<testcase name="Test Engine Service Invalid Model" classname="[chromium] › redis.spec.js › Test Engine Service › Invalid Model" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>
