@@ -7,9 +7,9 @@ const connection = createClient({ URI })
 
 let task, validateDataset, validateModel
 
-test.describe('Test Engine Task', () => {
+test.describe.configure({ mode: 'serial' });
 
-    test.describe.configure({ mode: 'serial' });
+test.describe('Test Engine Task', () => {
 
     test.beforeAll(async () => {
 
@@ -219,9 +219,7 @@ test.describe('Test Engine Task', () => {
 
 })
 
-test('Test Engine Service', () => {
-
-    test.describe.configure({ mode: 'serial' });
+test.describe('Test Engine Service', () => {
 
     test.beforeAll(async () => {
 
