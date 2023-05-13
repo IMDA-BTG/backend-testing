@@ -7,6 +7,12 @@ const { devices } = require('@playwright/test');
  */
 // require('dotenv').config();
 
+const testRailOptions = {
+  // Whether to add <properties> with all annotations; default is false
+  embedAnnotationsAsProperties: true,
+  // Where to put the report.
+  outputFile: './test-results/junit-report.xml'
+}
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -32,7 +38,11 @@ const config = {
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [ ['junit', { outputFile: 'results.xml' }] ],
+  reporter: [ 
+    ['list'],
+    ['html', { outFolder: 'test-results', open: 'open'}],
+    ['junit', testRailOptions ]
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -98,7 +108,7 @@ const config = {
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+  outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
   // webServer: {
