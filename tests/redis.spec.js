@@ -16,11 +16,13 @@ test.describe('Test Engine Task', () => {
         task = JSON.stringify({
             "mode": "upload",
             "id": "task:642691211b68cd044de3001e-642691211b68cd044de30023",
-            "algorithmId": "algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot",
-            "algorithmArgs": { "percentiles": [0.05, 0.95], "target_feature_name": "Interest_Rate", "grid_resolution": 100 },
+            "algorithmId": "algo:aiverify.stock.partial_dependence_plot:partial_dependence_plot",
+            "algorithmArgs": {},
             "testDataset": "/app/portal/uploads/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": "/app/portal/uploads/model/pickle_scikit_multiclasslr_loan.sav",
-            "modelType": "classification",
+            "groundTruthDataset":"/app/portal/uploads/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelType":"classification",
+            "groundTruth":"Interest_Rate"
         })
 
         // Create Connection to App via Redis
