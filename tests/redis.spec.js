@@ -3,7 +3,7 @@ import { createClient } from 'redis'
 import { test, expect } from '@playwright/test'
 import dotenv from 'dotenv';
 
-const URI = 'redis://localhost:6379'
+const URI = 'redis://127.0.0.1:6379'
 const connection = createClient({ URI })
 
 let task, validateDataset, validateModel
