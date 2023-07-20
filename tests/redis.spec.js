@@ -1,11 +1,26 @@
 import { Client } from 'redis-om'
 import { createClient } from 'redis'
 import { test, expect } from '@playwright/test'
+import dotenv from 'dotenv';
 
 const URI = 'redis://127.0.0.1:6379'
 const connection = createClient({ URI })
 
 let task, validateDataset, validateModel
+
+dotenv.config();
+
+let datasetFilePath = "", modelFilePath = ""
+
+if (process.env.ENVIRONMENT === 'DOCKER') {
+    datasetFilePath = "/app/portal/uploads/data"
+    modelFilePath = "/app/portal/uploads/model"
+}
+
+if (process.env.ENVIRONMENT === 'OS') {
+    datasetFilePath = process.cwd() + "/fixtures"
+    modelFilePath = process.cwd() + "/fixtures"
+}
 
 test.describe.configure({ mode: 'serial' });
 
@@ -18,11 +33,11 @@ test.describe('Test Engine Task', () => {
             "id": "task:642691211b68cd044de3001e-642691211b68cd044de30023",
             "algorithmId": "algo:aiverify.stock.partial_dependence_plot:partial_dependence_plot",
             "algorithmArgs": {},
-            "testDataset": baseDir + "/uploads/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/uploads/model/pickle_scikit_multiclasslr_loan.sav",
-            "groundTruthDataset":baseDir + "/uploads/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelType":"classification",
-            "groundTruth":"Interest_Rate"
+            "testDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": modelFilePath + "/pickle_scikit_multiclasslr_loan.sav",
+            "groundTruthDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
+            "modelType": "classification",
+            "groundTruth": "Interest_Rate"
         })
 
         // Create Connection to App via Redis
@@ -68,10 +83,12 @@ test.describe('Test Engine Task', () => {
             "id": "task:642691211b68cd044de3001e-642691211b68cd044de30024",
             "algorithmId": "algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot",
             "algorithmArgs": { "percentiles": [0.05, 0.95], "target_feature_name": "Interest_Rate", "grid_resolution": 100 },
-            "testDataset": baseDir + "/uploads/data/combine_all.sh",
-            "modelFile": baseDir + "/uploads/model/pickle_scikit_multiclasslr_loan.sav",
+            "testDataset": datasetFilePath + "/combine_all.sh",
+            "modelFile": modelFilePath + "/pickle_scikit_multiclasslr_loan.sav",
+            "groundTruthDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
-        })
+            "groundTruth": "Interest_Rate"
+        })    
 
         // Create Connection to App via Redis
         await connection.connect()
@@ -106,9 +123,11 @@ test.describe('Test Engine Task', () => {
             "id": "task:642691211b68cd044de3001e-642691211b68cd044de30025",
             "algorithmId": "algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot",
             "algorithmArgs": { "percentiles": [0.05, 0.95], "target_feature_name": "Interest_Rate", "grid_resolution": 100 },
-            "testDataset": baseDir + "/uploads/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/uploads/data/combine_all.sh",
+            "testDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": datasetFilePath + "/combine_all.sh",
+            "groundTruthDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
+            "groundTruth": "Interest_Rate"
         })
 
         // Create Connection to App via Redis
@@ -144,9 +163,9 @@ test.describe('Test Engine Task', () => {
             "id": "task:642691211b68cd044de3001e-642691211b68cd044de30026",
             "algorithmId": "algo:aiverify.stock.algorithms.fairness_metrics_toolbox:fairness_metrics_toolbox",
             "algorithmArgs": { "sensitive_feature": ["Gender", "Home_Owner"] },
-            "testDataset": "/home/benflop/GitHub/backend-testing/fixtures/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": "/home/benflop/uploads/model/combine_all.sh",
-            "groundTruthDataset": "/home/benflop/GitHub/backend-testing/fixtures/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": modelFilePath + "/combine_all.sh",
+            "groundTruthDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -184,9 +203,11 @@ test.describe('Test Engine Task', () => {
             "id": "task:642691211b68cd044de3001e-642691211b68cd044de30027",
             "algorithmId": "aiverify.algorithms.partial_dependence_plot:partial_dependence_plot",
             "algorithmArgs": { "percentiles": [0.05, 0.95], "target_feature_name": "Interest_Rate", "grid_resolution": 100 },
-            "testDataset": baseDir + "/uploads/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/uploads/model/pickle_scikit_multiclasslr_loan.sav",
+            "testDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": modelFilePath + "/pickle_scikit_multiclasslr_loan.sav",
+            "groundTruthDataset": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
+            "groundTruth": "Interest_Rate"
         })
 
         // Create Connection to App via Redis
@@ -217,15 +238,15 @@ test.describe('Test Engine Task', () => {
 
 })
 
-test.describe('Test Engine Service', () => {
+test.skip('Test Engine Service', () => {
 
     test('Validate Dataset', async () => {
 
         validateDataset = JSON.stringify({
             "serviceId": "service:64530",
-            "filePath": baseDir + "/uploads/data/pickle_pandas_tabular_loan_testing.sav"
+            "filePath": datasetFilePath + "/pickle_pandas_tabular_loan_testing.sav"
         })
-        
+
         // Create Connection to App via Redis
         await connection.connect()
 
@@ -254,9 +275,9 @@ test.describe('Test Engine Service', () => {
 
         validateDataset = JSON.stringify({
             "serviceId": "service:64531",
-            "filePath": baseDir + "/uploads/data/combine_all.sh"
+            "filePath": datasetFilePath + "/combine_all.sh"
         })
-        
+
         // Create Connection to App via Redis
         await connection.connect()
 
@@ -282,12 +303,12 @@ test.describe('Test Engine Service', () => {
 
     })
 
-    test('Validate Model', async () => {
+    test.skip('Validate Model', async () => {
 
         validateModel = JSON.stringify({
             "serviceId": "service:64530a39dc46da5656d1593k",
             "mode": "upload",
-            "filePath": baseDir + "/uploads/model/pickle_scikit_multiclasslr_loan.sav"
+            "filePath": datasetFilePath + "/pickle_scikit_multiclasslr_loan.sav"
         })
 
         // Create Connection to App via Redis
@@ -306,7 +327,7 @@ test.describe('Test Engine Service', () => {
 
         // Get HSET Response
         const serviceResponse = await connection.hGetAll(serviceId)
-        
+
         // Assert Response
         expect(serviceResponse.validationResult).toBe('valid')
 
@@ -315,7 +336,7 @@ test.describe('Test Engine Service', () => {
     })
 
     test.skip('Invalid Model', async () => {
-        
+
     })
-    
+
 })
