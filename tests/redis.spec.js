@@ -18,8 +18,8 @@ if (process.env.ENVIRONMENT === 'DOCKER') {
 }
 
 if (process.env.ENVIRONMENT === 'OS') {
-    datasetFilePath = "/home/benflop/GitHub/backend-testing/fixtures"
-    modelFilePath = "/home/benflop/GitHub/backend-testing/fixtures"
+    datasetFilePath = process.cwd() + "/fixtures"
+    modelFilePath = process.cwd() + "/fixtures"
 }
 
 test.describe.configure({ mode: 'serial' });
