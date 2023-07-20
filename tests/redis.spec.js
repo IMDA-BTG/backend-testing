@@ -10,16 +10,18 @@ let task, validateDataset, validateModel
 
 dotenv.config();
 
-let datasetFilePath = "", modelFilePath = ""
+let datasetFilePath = "", modelFilePath = "", pluginFilePath = ""
 
 if (process.env.ENVIRONMENT === 'DOCKER') {
     datasetFilePath = "/app/portal/uploads/data"
     modelFilePath = "/app/portal/uploads/model"
+    pluginFilePath = process.env.PLUGINDIR
 }
 
 if (process.env.ENVIRONMENT === 'OS') {
     datasetFilePath = process.cwd() + "/fixtures"
     modelFilePath = process.cwd() + "/fixtures"
+    pluginFilePath = process.env.PLUGINDIR
 }
 
 test.describe.configure({ mode: 'serial' });
@@ -47,7 +49,7 @@ test.describe('Test Engine Task', () => {
         await connection.hSet("algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot", "inputSchema", "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"/partial_dependence_plot/input.schema.json\",\"title\":\"Algorithm Plugin Input Arguments\",\"description\":\"A schema for algorithm plugin input arguments\",\"type\":\"object\",\"required\":[\"target_feature_name\",\"percentiles\",\"grid_resolution\"],\"properties\":{\"target_feature_name\":{\"title\":\"Target Feature Name\",\"description\":\"Target Feature Name (e.g. Interest_Rate)\",\"type\":\"string\"},\"percentiles\":{\"title\":\"Cut-off percentiles\",\"description\":\"Cut-off percentiles (e.g. [0.01, 0.99])\",\"type\":\"array\",\"minItems\":2,\"maxItems\":2,\"items\":{\"type\":\"number\"}},\"grid_resolution\":{\"title\":\"Grid Resolution\",\"description\":\"Grid Resolution (e.g. 25)\",\"type\":\"number\"}}}")
         await connection.hSet("algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot", "requirements", "[\"numpy==1.23.5 ; python_version >= \\\"3.10\\\" and python_version < \\\"3.11\\\"\",\"scipy==1.10.1 ; python_version >= \\\"3.10\\\" and python_version < \\\"3.11\\\"\"]")
         await connection.hSet("algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot", "outputSchema", "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\",\"$id\":\"/partial_dependence_plot/output.schema.json\",\"title\":\"Algorithm Plugin Output Arguments\",\"description\":\"A schema for algorithm plugin output arguments\",\"type\":\"object\",\"required\":[\"feature_names\",\"results\"],\"properties\":{\"feature_names\":{\"type\":\"array\",\"description\":\"Array of feature names\",\"minItems\":1,\"items\":{\"type\":\"string\"}},\"output_classes\":{\"description\":\"Array of output classes\",\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":[\"string\",\"number\",\"integer\",\"boolean\"]}},\"results\":{\"description\":\"Matrix of feature values (# feature names)\",\"type\":\"array\",\"minItems\":1,\"items\":{\"description\":\"Matrix of PDP plot data (# output classes)\",\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"array\",\"description\":\"Array of PDP values for each feature value (# feature values)\",\"minItems\":1,\"items\":{\"type\":\"object\",\"description\":\"Array of feature and PDP value\",\"required\":[\"feature_value\",\"pdp_value\"],\"properties\":{\"feature_value\":{\"type\":\"number\"},\"pdp_value\":{\"type\":\"number\"}}}}}}}}")
-        await connection.hSet("algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot", "data", "{\"cid\":\"partial_dependence_plot\",\"name\":\"partial dependence plot\",\"modelType\":[\"classification\",\"regression\"],\"version\":\"0.1.0\",\"author\":\"IMDA-T2E\",\"description\":\"A Partial Dependence Plot (PDP) explains how each feature and its feature value contribute to the predictions.\",\"tags\":[\"partial dependence plot\",\"classification\",\"regression\"],\"requireGroundTruth\":false,\"requiredFiles\":[\"AUTHORS.rst\",\"CHANGELOG.md\",\"input.schema.json\",\"LICENSE\",\"output.schema.json\",\"partial_dependence_plot.meta.json\",\"partial_dependence_plot.py\",\"README.md\",\"requirements.txt\",\"syntax_checker.py\"],\"type\":\"Algorithm\",\"gid\":\"aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot\",\"pluginGID\":\"aiverify.stock.algorithms.partial_dependence_plot\",\"algoPath\":\"" + baseDir + "/ai-verify-portal/plugins/partial-dependence-plot\"}")
+        await connection.hSet("algo:aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot", "data", "{\"cid\":\"partial_dependence_plot\",\"name\":\"partial dependence plot\",\"modelType\":[\"classification\",\"regression\"],\"version\":\"0.1.0\",\"author\":\"IMDA-T2E\",\"description\":\"A Partial Dependence Plot (PDP) explains how each feature and its feature value contribute to the predictions.\",\"tags\":[\"partial dependence plot\",\"classification\",\"regression\"],\"requireGroundTruth\":false,\"requiredFiles\":[\"AUTHORS.rst\",\"CHANGELOG.md\",\"input.schema.json\",\"LICENSE\",\"output.schema.json\",\"partial_dependence_plot.meta.json\",\"partial_dependence_plot.py\",\"README.md\",\"requirements.txt\",\"syntax_checker.py\"],\"type\":\"Algorithm\",\"gid\":\"aiverify.stock.algorithms.partial_dependence_plot:partial_dependence_plot\",\"pluginGID\":\"aiverify.stock.algorithms.partial_dependence_plot\",\"algoPath\":\"" + pluginFilePath + "/ai-verify-portal/plugins/partial-dependence-plot\"}")
 
         // Open API Connection to App via Redis
         const client = await new Client().use(connection)
