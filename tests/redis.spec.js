@@ -351,7 +351,7 @@ test.describe('Supported Models', () => {
         const features = model.algorithmArgs
         const featureType = features.split(':')
 
-        test(`${model.modelName} Model`, async () => {
+        test(`${model.id} ${model.modelName} Model`, async () => {
 
             if (featureType[0] == 'sensitive_feature') {
 
