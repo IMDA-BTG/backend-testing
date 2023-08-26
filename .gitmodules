@@ -1,0 +1,3 @@
+[submodule "aiverify-test-samples"]
+	path = aiverify-test-samples
+	url = https://github.com/IMDA-BTG/aiverify-test-samples.git
