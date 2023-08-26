@@ -382,7 +382,7 @@ test.describe('Supported Models', () => {
                         "explain_type": featureArgs[0].substring(featureArgs[0].indexOf(":") + 1),
                         "background_samples": parseInt(featureArgs[1].substring(featureArgs[1].indexOf(":") + 1)),
                         "data_samples": parseInt(featureArgs[2].substring(featureArgs[2].indexOf(":") + 1)),
-                        "background_path": featureArgs[3].substring(featureArgs[3].indexOf(":") + 1)
+                        "background_path": baseDir + featureArgs[3].substring(featureArgs[3].indexOf(":") + 1)
                     },
                     "testDataset": baseDir + model.testDataset,
                     "modelFile": baseDir + model.modelFile,
