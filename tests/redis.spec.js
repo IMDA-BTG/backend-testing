@@ -16,8 +16,6 @@ const connection = createClient({ URI })
 
 let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
-// test.describe.configure({ mode: 'serial' });
-
 test.describe('Test Engine Task', () => {
 
     test('Test Engine Task with Valid Inputs (Upload)', async () => {
@@ -57,7 +55,7 @@ test.describe('Test Engine Task', () => {
         }
 
         // Assert Response
-        expect(taskResponse.status).toBe('Success')
+        expect.soft(taskResponse.status).toBe('Success')
 
         // Close API Connection
         await client.close()
@@ -145,7 +143,7 @@ test.describe('Test Engine Task', () => {
         }
 
         // Assert Response
-        expect(taskResponse.status).toBe('Error')
+        expect.soft(taskResponse.status).toBe('Error')
 
         // Close API Connection
         await client.close()
@@ -189,7 +187,7 @@ test.describe('Test Engine Task', () => {
         }
 
         // Assert Response
-        expect(taskResponse.status).toBe('Error')
+        expect.soft(taskResponse.status).toBe('Error')
 
         // Close API Connection
         await client.close()
@@ -233,7 +231,7 @@ test.describe('Test Engine Task', () => {
         }
 
         // Assert Response
-        expect(taskResponse.status).toBe('Error')
+        expect.soft(taskResponse.status).toBe('Error')
 
         // Close API Connection
         await client.close()
@@ -269,7 +267,7 @@ test.skip('Test Engine Service', () => {
         const serviceResponse = await connection.hGetAll(serviceId)
 
         // Assert Response
-        expect(serviceResponse.validationResult).toBe('valid')
+        expect.soft(serviceResponse.validationResult).toBe('valid')
 
         // Close API Connection
         await client.close()
@@ -300,7 +298,7 @@ test.skip('Test Engine Service', () => {
         const serviceResponse = await connection.hGetAll(serviceId)
 
         // Assert Response
-        expect(serviceResponse.validationResult).toBe('invalid')
+        expect.soft(serviceResponse.validationResult).toBe('invalid')
 
         // Close API Connection
         await client.close()
@@ -333,7 +331,7 @@ test.skip('Test Engine Service', () => {
         const serviceResponse = await connection.hGetAll(serviceId)
 
         // Assert Response
-        expect(serviceResponse.validationResult).toBe('valid')
+        expect.soft(serviceResponse.validationResult).toBe('valid')
 
         // Close API Connection
         await client.close()
