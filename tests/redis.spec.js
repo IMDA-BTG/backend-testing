@@ -14,8 +14,7 @@ const models = parse(fs.readFileSync(path.join(__dirname, '../uploads/csv/narrow
 const URI = 'redis://127.0.0.1:6379'
 const connection = createClient({ URI })
 
-let task, validateDataset, validateModel//, baseDir = process.env.BASEDIR
-let baseDir = "/home/benflop/GitHub"
+let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
 test.describe('Test Engine Task', () => {
 
@@ -25,7 +24,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30022",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -53,6 +56,8 @@ test.describe('Test Engine Task', () => {
 
         while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -69,7 +74,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30023",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_comma.csv",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_comma.csv",
@@ -97,6 +106,8 @@ test.describe('Test Engine Task', () => {
 
         while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -113,7 +124,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30024",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_insurance_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_insurance_testing.sav",
@@ -139,8 +154,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -150,14 +167,18 @@ test.describe('Test Engine Task', () => {
         await client.close()
 
     })
-    
+
     test('Incompatible Model Type (Upload)', async () => {
 
         task = JSON.stringify({
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30025",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -183,8 +204,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -201,7 +224,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30026",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_insurance_testing.sav",
@@ -227,8 +254,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -246,7 +275,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30027",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_regression:fairness_metrics_toolbox_for_regression",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -272,8 +305,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -290,7 +325,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -327,7 +366,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30029",
             "algorithmId": "",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -353,8 +396,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -371,7 +416,7 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30030",
             "algorithmId": "",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": { "sensitive_feature": ["Gender", "Home_Owner"] },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -397,8 +442,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -415,7 +462,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30031",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": "",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -441,8 +492,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -459,7 +512,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30032",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": "",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -485,8 +542,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -503,7 +562,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30033",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": "",
@@ -529,8 +592,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -547,7 +612,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30034",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -573,8 +642,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -591,7 +662,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30035",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -617,8 +692,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -635,7 +712,11 @@ test.describe('Test Engine Task', () => {
             "mode": "test",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30036",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -661,8 +742,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -679,7 +762,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30037",
             "algorithmId": "aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -705,8 +792,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -723,7 +812,7 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30038",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "annotated_ground_truth_path":"/path","file_name_label":"file_name" },
+            "algorithmArgs": { "annotated_ground_truth_path": "/path", "file_name_label": "file_name" },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -749,8 +838,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -767,7 +858,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30039",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/combine_all.sh",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -793,8 +888,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -811,7 +908,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30040",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/uploads/data/combine_all.sh",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -837,8 +938,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -850,12 +953,16 @@ test.describe('Test Engine Task', () => {
     })
 
     test('Invalid Ground Truth Dataset (Upload)', async () => {
-        
+
         task = JSON.stringify({
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30041",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/combine_all.sh",
@@ -881,8 +988,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -899,7 +1008,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30042",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -925,8 +1038,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -943,7 +1058,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30043",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
@@ -969,8 +1088,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -987,7 +1108,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30044",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_single_column.csv",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_single_column.csv",
@@ -1013,8 +1138,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -1031,7 +1158,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30045",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_incorrect_column_length.csv",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_incorrect_column_length.csv",
@@ -1057,8 +1188,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -1075,7 +1208,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30046",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_invalid_delimiter.csv",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_invalid_delimiter.csv",
@@ -1101,8 +1238,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -1119,7 +1258,11 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30046",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
-            "algorithmArgs": { "sensitive_feature": ["Gender","Home_Owner"] },
+            "algorithmArgs": {
+                "sensitive_feature": ["Gender", "Home_Owner"],
+                "annotated_labels_path": "NA",
+                "file_name_label": "NA"
+            },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_missing_column.csv",
             "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_missing_column.csv",
@@ -1145,8 +1288,10 @@ test.describe('Test Engine Task', () => {
         // Get HSET Response
         let taskResponse = await connection.hGetAll(taskId)
 
-        while (taskResponse.status != 'Error') {
+        while (taskResponse.status != 'Success') {
             taskResponse = await connection.hGetAll(taskId)
+            if (taskResponse.status == 'Error')
+                break;
         }
 
         // Assert Response
@@ -1268,13 +1413,22 @@ test.describe('Supported Models', () => {
 
             if (featureType[0] == 'sensitive_feature') {
 
-                const feature = featureType[1].replace('[', '').replace(']', '').split(',')
+                let featureArgs = features.split(',')
+                let sensitive_feature = featureArgs[0].replace('[', '').replace(']', '').split(':')
+                let feature = sensitive_feature[1].split(' ')
+
+                let annotated_labels_path = featureArgs[1].split(':')
+                let file_name_label = featureArgs[2].split(':')
 
                 task = JSON.stringify({
                     "mode": model.mode,
                     "id": model.id,
                     "algorithmId": model.algorithmId,
-                    "algorithmArgs": { "sensitive_feature": feature.length == 2 ? [feature[0], feature[1]] : [feature[0]] },
+                    "algorithmArgs": {
+                        "sensitive_feature": feature.length == 2 ? [feature[0], feature[1]] : [feature[0]],
+                        "annotated_labels_path": annotated_labels_path[1],
+                        "file_name_label": file_name_label[1]
+                    },
                     "testDataset": baseDir + model.testDataset,
                     "modelFile": baseDir + model.modelFile,
                     "groundTruthDataset": baseDir + model.groundTruthDataset,
