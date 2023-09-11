@@ -17,7 +17,7 @@ const connection = createClient({ URI })
 let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
 
-let testFileDir = baseDir + "/aiverify/uploads"
+let testFileDir = baseDir + "/uploads"
 
 test.describe('Test Engine Task', () => {
 
