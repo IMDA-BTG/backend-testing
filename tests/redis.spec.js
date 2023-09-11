@@ -16,7 +16,8 @@ const connection = createClient({ URI })
 
 let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
-const testFileDir = baseDir + "/aiverify/uploads"
+
+let testFileDir = baseDir + "/aiverify/uploads"
 
 test.describe('Test Engine Task', () => {
 
@@ -30,6 +31,8 @@ test.describe('Test Engine Task', () => {
         fs.cpSync(uploadsFileDir+"/csv", testFileDir+"/data", {recursive: true});
         fs.cpSync(uploadsFileDir+"/data", testFileDir+"/data", {recursive: true});
         fs.cpSync(uploadsFileDir+"/model", testFileDir+"/model", {recursive: true});
+
+        testFileDir = "/app/aiverify/uploads"
 
     });
 
