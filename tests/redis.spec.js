@@ -16,18 +16,17 @@ const connection = createClient({ URI })
 
 let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
-let testFileDir = baseDir + "/uploads"
-
-testFileDir = () => {
+let testFileDir = () => {
     const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
-    const uploadsFileDir = baseDir + "/qa-test/backend-testing/uploads"
+    const backendTestFileDir = baseDir + "/qa-test/backend-testing/uploads"
+    const hostTestDir = baseDir + "/uploads"
 
-    fs.cpSync(sampleFileDir+"/data", testFileDir+"/data", {recursive: true});
-    fs.cpSync(sampleFileDir+"/models", testFileDir+"/model", {recursive: true});
+    fs.cpSync(sampleFileDir+"/data", hostTestDir+"/data", {recursive: true});
+    fs.cpSync(sampleFileDir+"/models", hostTestDir+"/model", {recursive: true});
 
-    fs.cpSync(uploadsFileDir+"/csv", testFileDir+"/data", {recursive: true});
-    fs.cpSync(uploadsFileDir+"/data", testFileDir+"/data", {recursive: true});
-    fs.cpSync(uploadsFileDir+"/model", testFileDir+"/model", {recursive: true});
+    fs.cpSync(backendTestFileDir+"/csv", hostTestDir+"/data", {recursive: true});
+    fs.cpSync(backendTestFileDir+"/data", hostTestDir+"/data", {recursive: true});
+    fs.cpSync(backendTestFileDir+"/model", hostTestDir+"/model", {recursive: true});
 
     return "/app/aiverify/uploads"
 }
