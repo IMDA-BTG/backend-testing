@@ -16,26 +16,48 @@ const connection = createClient({ URI })
 
 let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
-let testFileDir = () => {
-    const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
-    const backendTestFileDir = baseDir + "/qa-test/backend-testing/uploads"
-    const hostTestDir = baseDir + "/uploads"
-    try {
-        console.log("Copying file dir "+sampleFileDir+" to "+hostTestDir)
-        fs.cpSync(sampleFileDir + "/data", hostTestDir + "/data", {recursive: true});
-        fs.cpSync(sampleFileDir + "/models", hostTestDir + "/model", {recursive: true});
+let testFileDir = "/app/aiverify/uploads"
 
-        fs.cpSync(backendTestFileDir + "/csv", hostTestDir + "/data", {recursive: true});
-        fs.cpSync(backendTestFileDir + "/data", hostTestDir + "/data", {recursive: true});
-        fs.cpSync(backendTestFileDir + "/model", hostTestDir + "/model", {recursive: true});
-    }
-    catch (err) {
-        console.log("Copy file dirs error:", err)
-    }
-    return "/app/aiverify/uploads"
-}
+
+// let testFileDir = () => {
+//     const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
+//     const backendTestFileDir = baseDir + "/qa-test/backend-testing/uploads"
+//     const hostTestDir = baseDir + "/uploads"
+//     try {
+//         console.log("Copying file dir "+sampleFileDir+" to "+hostTestDir)
+//         fs.cpSync(sampleFileDir + "/data", hostTestDir + "/data", {recursive: true});
+//         fs.cpSync(sampleFileDir + "/models", hostTestDir + "/model", {recursive: true});
+//
+//         fs.cpSync(backendTestFileDir + "/csv", hostTestDir + "/data", {recursive: true});
+//         fs.cpSync(backendTestFileDir + "/data", hostTestDir + "/data", {recursive: true});
+//         fs.cpSync(backendTestFileDir + "/model", hostTestDir + "/model", {recursive: true});
+//     }
+//     catch (err) {
+//         console.log("Copy file dirs error:", err)
+//     }
+//     return "/app/aiverify/uploads"
+// }
 
 test.describe('Test Engine Task', () => {
+
+    test.beforeAll(() => {
+        const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
+        const backendTestFileDir = baseDir + "/qa-test/backend-testing/uploads"
+        const hostTestDir = baseDir + "/uploads"
+        try {
+            console.log("Copying file dir " + sampleFileDir + " to " + hostTestDir)
+            fs.cpSync(sampleFileDir + "/data", hostTestDir + "/data", {recursive: true});
+            fs.cpSync(sampleFileDir + "/models", hostTestDir + "/model", {recursive: true});
+
+            fs.cpSync(backendTestFileDir + "/csv", hostTestDir + "/data", {recursive: true});
+            fs.cpSync(backendTestFileDir + "/data", hostTestDir + "/data", {recursive: true});
+            fs.cpSync(backendTestFileDir + "/model", hostTestDir + "/model", {recursive: true});
+        } catch (err) {
+            console.log("Copy file dirs error:", err)
+        }
+
+        testFileDir = "/app/aiverify/uploads"
+    });
 
     // test.beforeAll(() => {
     //     const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
