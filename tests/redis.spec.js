@@ -16,25 +16,38 @@ const connection = createClient({ URI })
 
 let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
 
-
 let testFileDir = baseDir + "/uploads"
+
+testFileDir = () => {
+    const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
+    const uploadsFileDir = baseDir + "/qa-test/backend-testing/uploads"
+
+    fs.cpSync(sampleFileDir+"/data", testFileDir+"/data", {recursive: true});
+    fs.cpSync(sampleFileDir+"/models", testFileDir+"/model", {recursive: true});
+
+    fs.cpSync(uploadsFileDir+"/csv", testFileDir+"/data", {recursive: true});
+    fs.cpSync(uploadsFileDir+"/data", testFileDir+"/data", {recursive: true});
+    fs.cpSync(uploadsFileDir+"/model", testFileDir+"/model", {recursive: true});
+
+    return "/app/aiverify/uploads"
+}
 
 test.describe('Test Engine Task', () => {
 
-    test.beforeAll(() => {
-        const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
-        const uploadsFileDir = baseDir + "/qa-test/backend-testing/uploads"
-
-        fs.cpSync(sampleFileDir+"/data", testFileDir+"/data", {recursive: true});
-        fs.cpSync(sampleFileDir+"/models", testFileDir+"/model", {recursive: true});
-
-        fs.cpSync(uploadsFileDir+"/csv", testFileDir+"/data", {recursive: true});
-        fs.cpSync(uploadsFileDir+"/data", testFileDir+"/data", {recursive: true});
-        fs.cpSync(uploadsFileDir+"/model", testFileDir+"/model", {recursive: true});
-
-        testFileDir = "/app/aiverify/uploads"
-
-    });
+    // test.beforeAll(() => {
+    //     const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
+    //     const uploadsFileDir = baseDir + "/qa-test/backend-testing/uploads"
+    //
+    //     fs.cpSync(sampleFileDir+"/data", testFileDir+"/data", {recursive: true});
+    //     fs.cpSync(sampleFileDir+"/models", testFileDir+"/model", {recursive: true});
+    //
+    //     fs.cpSync(uploadsFileDir+"/csv", testFileDir+"/data", {recursive: true});
+    //     fs.cpSync(uploadsFileDir+"/data", testFileDir+"/data", {recursive: true});
+    //     fs.cpSync(uploadsFileDir+"/model", testFileDir+"/model", {recursive: true});
+    //
+    //     testFileDir = "/app/aiverify/uploads"
+    //
+    // });
 
     test('Test Engine Task with Valid Inputs (Upload)', async () => {
 
