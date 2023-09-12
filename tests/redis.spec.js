@@ -1469,7 +1469,7 @@ test.describe('Supported Models', () => {
                     "algorithmId": model.algorithmId,
                     "algorithmArgs":
                     {
-                        "annotated_ground_truth_path": featureArgs[0].substring(featureArgs[0].indexOf(":") + 1),
+                        "annotated_ground_truth_path": baseDir + featureArgs[0].substring(featureArgs[0].indexOf(":") + 1),
                         "file_name_label": featureArgs[1].substring(featureArgs[1].indexOf(":") + 1),
                     },
                     "testDataset": baseDir + model.testDataset,
@@ -1478,6 +1478,27 @@ test.describe('Supported Models', () => {
                     "modelType": model.modelType,
                     "groundTruth": model.groundTruth
                 })
+            }
+            else if (featureType[0] == 'set_seed') {
+                let featureArgs = features.split(',')
+
+                task = JSON.stringify({
+                    "mode": model.mode,
+                    "id": model.id,
+                    "algorithmId": model.algorithmId,
+                    "algorithmArgs":
+                    {
+                        "set_seed": parseInt(featureArgs[0].substring(featureArgs[0].indexOf(":") + 1)),
+                        "annotated_ground_truth_path": baseDir + featureArgs[1].substring(featureArgs[1].indexOf(":") + 1),
+                        "file_name_label": featureArgs[2].substring(featureArgs[2].indexOf(":") + 1),
+                    },
+                    "testDataset": baseDir + model.testDataset,
+                    "modelFile": baseDir + model.modelFile,
+                    "groundTruthDataset": baseDir + model.groundTruthDataset,
+                    "modelType": model.modelType,
+                    "groundTruth": model.groundTruth
+                })
+
             }
 
             // Create Connection to App via Redis
