@@ -1426,7 +1426,7 @@ test.describe('Supported Models', () => {
                     "algorithmId": model.algorithmId,
                     "algorithmArgs": {
                         "sensitive_feature": feature.length == 2 ? [feature[0], feature[1]] : [feature[0]],
-                        "annotated_labels_path": annotated_labels_path[1],
+                        "annotated_labels_path": baseDir + annotated_labels_path[1],
                         "file_name_label": file_name_label[1]
                     },
                     "testDataset": baseDir + model.testDataset,
