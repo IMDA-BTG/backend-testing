@@ -1,16 +1,58 @@
-<testsuites id="" name="" tests="30" failures="0" skipped="1" errors="0" time="12.475660000000149">
-<testsuite name="redis.spec.js" timestamp="1692673157736" hostname="" tests="30" failures="0" skipped="1" time="15.628" errors="0">
-<testcase name="Test Engine Task Test Engine Task with Valid Inputs (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Test Engine Task with Valid Inputs (Upload)" time="11.659">
+<testsuites id="" name="" tests="60" failures="0" skipped="1" errors="0" time="550.7851899999977">
+<testsuite name="redis.spec.js" timestamp="1694518201090" hostname="" tests="60" failures="0" skipped="1" time="835.91" errors="0">
+<testcase name="Test Engine Task Test Engine Task with Valid Inputs (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Test Engine Task with Valid Inputs (Upload)" time="2.068">
 </testcase>
-<testcase name="Test Engine Task Invalid Data File (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Data File (Upload)" time="0.034">
+<testcase name="Test Engine Task Test Engine Task with Valid CSV Inputs (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Test Engine Task with Valid CSV Inputs (Upload)" time="3.204">
 </testcase>
-<testcase name="Test Engine Task Invalid Model File (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Model File (Upload)" time="3.464">
+<testcase name="Test Engine Task Incompatible Model/Dataset (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Incompatible Model/Dataset (Upload)" time="0.179">
 </testcase>
-<testcase name="Test Engine Task Invalid Input Schema (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Input Schema (Upload)" time="0.036">
+<testcase name="Test Engine Task Incompatible Model Type (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Incompatible Model Type (Upload)" time="0.195">
 </testcase>
-<testcase name="Test Engine Task Invalid Algorithm ID (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Algorithm ID (Upload)" time="0.04">
+<testcase name="Test Engine Task Incompatible Model/Ground Truth (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Incompatible Model/Ground Truth (Upload)" time="0.188">
 </testcase>
-<testcase name="Test Engine Service" classname="[chromium] › redis.spec.js › Test Engine Service" time="0.001">
+<testcase name="Test Engine Task Incompatible Algorithm (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Incompatible Algorithm (Upload)" time="0.451">
+</testcase>
+<testcase name="Test Engine Task Missing ID (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing ID (Upload)" time="0.016">
+</testcase>
+<testcase name="Test Engine Task Missing Algorithm ID (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Algorithm ID (Upload)" time="0.028">
+</testcase>
+<testcase name="Test Engine Task Missing Test Arguments (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Test Arguments (Upload)" time="0.057">
+</testcase>
+<testcase name="Test Engine Task Missing Dataset (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Dataset (Upload)" time="0.027">
+</testcase>
+<testcase name="Test Engine Task Missing Model File (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Model File (Upload)" time="0.017">
+</testcase>
+<testcase name="Test Engine Task Missing Ground Truth Dataset (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Ground Truth Dataset (Upload)" time="0.021">
+</testcase>
+<testcase name="Test Engine Task Missing Model Type (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Model Type (Upload)" time="0.016">
+</testcase>
+<testcase name="Test Engine Task Missing Ground Truth (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Ground Truth (Upload)" time="0.013">
+</testcase>
+<testcase name="Test Engine Task Invalid Mode (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Mode (Upload)" time="0.019">
+</testcase>
+<testcase name="Test Engine Task Invalid Algorithm ID (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Algorithm ID (Upload)" time="0.019">
+</testcase>
+<testcase name="Test Engine Task Invalid Test Arguments (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Test Arguments (Upload)" time="0.025">
+</testcase>
+<testcase name="Test Engine Task Invalid Dataset (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Dataset (Upload)" time="0.019">
+</testcase>
+<testcase name="Test Engine Task Invalid Model File (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Model File (Upload)" time="0.024">
+</testcase>
+<testcase name="Test Engine Task Invalid Ground Truth Dataset (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Ground Truth Dataset (Upload)" time="0.011">
+</testcase>
+<testcase name="Test Engine Task Invalid Model Type (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Model Type (Upload)" time="0.01">
+</testcase>
+<testcase name="Test Engine Task Invalid Ground Truth (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Ground Truth (Upload)" time="0.259">
+</testcase>
+<testcase name="Test Engine Task Single Column (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Single Column (Upload)" time="1.08">
+</testcase>
+<testcase name="Test Engine Task Incorrect Number of Columns (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Incorrect Number of Columns (Upload)" time="1.627">
+</testcase>
+<testcase name="Test Engine Task Invalid Delimiter (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Invalid Delimiter (Upload)" time="1.427">
+</testcase>
+<testcase name="Test Engine Task Missing Column (Upload)" classname="[chromium] › redis.spec.js › Test Engine Task › Missing Column (Upload)" time="1.356">
+</testcase>
+<testcase name="Test Engine Service" classname="[chromium] › redis.spec.js › Test Engine Service" time="0">
 <properties>
 <property name="skip" value="">
 </property>
@@ -18,53 +60,71 @@
 <skipped>
 </skipped>
 </testcase>
-<testcase name="Supported Models 12345 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12345 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier Model" time="0.043">
+<testcase name="Supported Models 12345 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12345 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier Model" time="1.897">
 </testcase>
-<testcase name="Supported Models 12346 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12346 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier Model" time="0.061">
+<testcase name="Supported Models 12346 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12346 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier Model" time="0.523">
 </testcase>
-<testcase name="Supported Models 12347 regression_insurance_sklearn.linear_model._base.LinearRegression Model" classname="[chromium] › redis.spec.js › Supported Models › 12347 regression_insurance_sklearn.linear_model._base.LinearRegression Model" time="0.029">
+<testcase name="Supported Models 12347 regression_insurance_sklearn.linear_model._base.LinearRegression Model" classname="[chromium] › redis.spec.js › Supported Models › 12347 regression_insurance_sklearn.linear_model._base.LinearRegression Model" time="17.275">
 </testcase>
-<testcase name="Supported Models 12348 multiclass_classification_loan_sklearn.tree._classes.DecisionTreeClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12348 multiclass_classification_loan_sklearn.tree._classes.DecisionTreeClassifier Model" time="0.005">
+<testcase name="Supported Models 12348 multiclass_classification_loan_sklearn.tree._classes.DecisionTreeClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12348 multiclass_classification_loan_sklearn.tree._classes.DecisionTreeClassifier Model" time="0.888">
 </testcase>
-<testcase name="Supported Models 12349 binary_classification_compas_sklearn.tree._classes.DecisionTreeClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12349 binary_classification_compas_sklearn.tree._classes.DecisionTreeClassifier Model" time="0.005">
+<testcase name="Supported Models 12349 binary_classification_compas_sklearn.tree._classes.DecisionTreeClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12349 binary_classification_compas_sklearn.tree._classes.DecisionTreeClassifier Model" time="0.489">
 </testcase>
-<testcase name="Supported Models 12350 regression_insurance_sklearn.ensemble._forest.ExtraTreesRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12350 regression_insurance_sklearn.ensemble._forest.ExtraTreesRegressor Model" time="0.007">
+<testcase name="Supported Models 12350 regression_insurance_sklearn.ensemble._forest.ExtraTreesRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12350 regression_insurance_sklearn.ensemble._forest.ExtraTreesRegressor Model" time="0.567">
 </testcase>
-<testcase name="Supported Models 12351 regression_insurance_sklearn.ensemble._gb.GradientBoostingRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12351 regression_insurance_sklearn.ensemble._gb.GradientBoostingRegressor Model" time="0.01">
+<testcase name="Supported Models 12351 regression_insurance_sklearn.ensemble._gb.GradientBoostingRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12351 regression_insurance_sklearn.ensemble._gb.GradientBoostingRegressor Model" time="0.443">
 </testcase>
-<testcase name="Supported Models 12352 multiclass_classification_loan_sklearn.ensemble._gb.GradientBoostingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12352 multiclass_classification_loan_sklearn.ensemble._gb.GradientBoostingClassifier Model" time="0.016">
+<testcase name="Supported Models 12352 multiclass_classification_loan_sklearn.ensemble._gb.GradientBoostingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12352 multiclass_classification_loan_sklearn.ensemble._gb.GradientBoostingClassifier Model" time="1.509">
 </testcase>
-<testcase name="Supported Models 12353 binary_classification_compas_sklearn.ensemble._gb.GradientBoostingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12353 binary_classification_compas_sklearn.ensemble._gb.GradientBoostingClassifier Model" time="0.011">
+<testcase name="Supported Models 12353 binary_classification_compas_sklearn.ensemble._gb.GradientBoostingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12353 binary_classification_compas_sklearn.ensemble._gb.GradientBoostingClassifier Model" time="11.619">
 </testcase>
-<testcase name="Supported Models 12354 regression_insurance_sklearn.ensemble._forest.RandomForestRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12354 regression_insurance_sklearn.ensemble._forest.RandomForestRegressor Model" time="0.025">
+<testcase name="Supported Models 12354 regression_insurance_sklearn.ensemble._forest.RandomForestRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12354 regression_insurance_sklearn.ensemble._forest.RandomForestRegressor Model" time="0.492">
 </testcase>
-<testcase name="Supported Models 12355 multiclass_classification_loan_sklearn.ensemble._forest.RandomForestClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12355 multiclass_classification_loan_sklearn.ensemble._forest.RandomForestClassifier Model" time="0.016">
+<testcase name="Supported Models 12355 multiclass_classification_loan_sklearn.ensemble._forest.RandomForestClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12355 multiclass_classification_loan_sklearn.ensemble._forest.RandomForestClassifier Model" time="2.478">
 </testcase>
-<testcase name="Supported Models 12356 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier (SHAP) Model" classname="[chromium] › redis.spec.js › Supported Models › 12356 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier (SHAP) Model" time="0.021">
+<testcase name="Supported Models 12356 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier (SHAP) Model" classname="[chromium] › redis.spec.js › Supported Models › 12356 binary_classification_compas_sklearn.ensemble._forest.RandomForestClassifier (SHAP) Model" time="19.693">
 </testcase>
-<testcase name="Supported Models 12357 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier (FMTC) Model" classname="[chromium] › redis.spec.js › Supported Models › 12357 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier (FMTC) Model" time="0.014">
+<testcase name="Supported Models 12357 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier (FMTC) Model" classname="[chromium] › redis.spec.js › Supported Models › 12357 multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier (FMTC) Model" time="1.787">
 </testcase>
-<testcase name="Supported Models 12358 binary_classification_compas_sklearn.ensemble._bagging.BaggingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12358 binary_classification_compas_sklearn.ensemble._bagging.BaggingClassifier Model" time="0.019">
+<testcase name="Supported Models 12358 binary_classification_compas_sklearn.ensemble._bagging.BaggingClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12358 binary_classification_compas_sklearn.ensemble._bagging.BaggingClassifier Model" time="0.504">
 </testcase>
-<testcase name="Supported Models 12359 multiclass_classification_loan_sklearn.linear_model._perceptron.Perceptron Model" classname="[chromium] › redis.spec.js › Supported Models › 12359 multiclass_classification_loan_sklearn.linear_model._perceptron.Perceptron Model" time="0.009">
+<testcase name="Supported Models 12359 multiclass_classification_loan_sklearn.linear_model._perceptron.Perceptron Model" classname="[chromium] › redis.spec.js › Supported Models › 12359 multiclass_classification_loan_sklearn.linear_model._perceptron.Perceptron Model" time="0.868">
 </testcase>
-<testcase name="Supported Models 12360 binary_classification_compas_sklearn.linear_model._perceptron.Perceptron Model" classname="[chromium] › redis.spec.js › Supported Models › 12360 binary_classification_compas_sklearn.linear_model._perceptron.Perceptron Model" time="0.011">
+<testcase name="Supported Models 12360 binary_classification_compas_sklearn.linear_model._perceptron.Perceptron Model" classname="[chromium] › redis.spec.js › Supported Models › 12360 binary_classification_compas_sklearn.linear_model._perceptron.Perceptron Model" time="0.404">
 </testcase>
-<testcase name="Supported Models 12361 multiclass_classification_loan_categoricalcrossentropy_keras.engine.sequential.Sequential Model" classname="[chromium] › redis.spec.js › Supported Models › 12361 multiclass_classification_loan_categoricalcrossentropy_keras.engine.sequential.Sequential Model" time="0.006">
+<testcase name="Supported Models 12361 multiclass_classification_loan_categoricalcrossentropy_keras.engine.sequential.Sequential Model" classname="[chromium] › redis.spec.js › Supported Models › 12361 multiclass_classification_loan_categoricalcrossentropy_keras.engine.sequential.Sequential Model" time="66.022">
 </testcase>
-<testcase name="Supported Models 12362 binary_classification_compas_crossentropy_keras.engine.sequential.Sequential Model" classname="[chromium] › redis.spec.js › Supported Models › 12362 binary_classification_compas_crossentropy_keras.engine.sequential.Sequential Model" time="0.006">
+<testcase name="Supported Models 12362 binary_classification_compas_crossentropy_keras.engine.sequential.Sequential Model" classname="[chromium] › redis.spec.js › Supported Models › 12362 binary_classification_compas_crossentropy_keras.engine.sequential.Sequential Model" time="15.625">
 </testcase>
-<testcase name="Supported Models 12363 regression_insurance_hinge_keras.engine.sequential.Sequential Model" classname="[chromium] › redis.spec.js › Supported Models › 12363 regression_insurance_hinge_keras.engine.sequential.Sequential Model" time="0.015">
+<testcase name="Supported Models 12363 regression_insurance_hinge_keras.engine.sequential.Sequential Model" classname="[chromium] › redis.spec.js › Supported Models › 12363 regression_insurance_hinge_keras.engine.sequential.Sequential Model" time="17.502">
 </testcase>
-<testcase name="Supported Models 12364 binary_classification_compas_xgboost.sklearn.XGBClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12364 binary_classification_compas_xgboost.sklearn.XGBClassifier Model" time="0.011">
+<testcase name="Supported Models 12364 binary_classification_compas_xgboost.sklearn.XGBClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12364 binary_classification_compas_xgboost.sklearn.XGBClassifier Model" time="6.844">
 </testcase>
-<testcase name="Supported Models 12365 multiclass_classification_loan_xgboost.sklearn.XGBClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12365 multiclass_classification_loan_xgboost.sklearn.XGBClassifier Model" time="0.02">
+<testcase name="Supported Models 12365 multiclass_classification_loan_xgboost.sklearn.XGBClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12365 multiclass_classification_loan_xgboost.sklearn.XGBClassifier Model" time="8.699">
 </testcase>
-<testcase name="Supported Models 12366 regression_insurance_xgboost.sklearn.XGBRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12366 regression_insurance_xgboost.sklearn.XGBRegressor Model" time="0.009">
+<testcase name="Supported Models 12366 regression_insurance_xgboost.sklearn.XGBRegressor Model" classname="[chromium] › redis.spec.js › Supported Models › 12366 regression_insurance_xgboost.sklearn.XGBRegressor Model" time="3.891">
 </testcase>
-<testcase name="Supported Models 12367 binary_classification_compas_logistic_xgboost.core.Booster Model" classname="[chromium] › redis.spec.js › Supported Models › 12367 binary_classification_compas_logistic_xgboost.core.Booster Model" time="0.01">
+<testcase name="Supported Models 12367 binary_classification_compas_logistic_xgboost.core.Booster Model" classname="[chromium] › redis.spec.js › Supported Models › 12367 binary_classification_compas_logistic_xgboost.core.Booster Model" time="3.528">
 </testcase>
-<testcase name="Supported Models 12368 binary_classification_compas_lightgbm.sklearn.LGBMClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12368 binary_classification_compas_lightgbm.sklearn.LGBMClassifier Model" time="0.015">
+<testcase name="Supported Models 12368 binary_classification_compas_lightgbm.sklearn.LGBMClassifier Model" classname="[chromium] › redis.spec.js › Supported Models › 12368 binary_classification_compas_lightgbm.sklearn.LGBMClassifier Model" time="22.288">
+</testcase>
+<testcase name="Supported Models 12369 ALE ToolBox Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12369 ALE ToolBox Pipeline Model" time="0.627">
+</testcase>
+<testcase name="Supported Models 12370 FMTC ToolBox Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12370 FMTC ToolBox Pipeline Model" time="0.596">
+</testcase>
+<testcase name="Supported Models 12371 FMTR ToolBox Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12371 FMTR ToolBox Pipeline Model" time="0.446">
+</testcase>
+<testcase name="Supported Models 12372 Image Corruption ToolBox Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12372 Image Corruption ToolBox Pipeline Model" time="64.354">
+</testcase>
+<testcase name="Supported Models 12373 PDP ToolBox Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12373 PDP ToolBox Pipeline Model" time="0.268">
+</testcase>
+<testcase name="Supported Models 12374 Robustness Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12374 Robustness Pipeline Model" time="7.165">
+</testcase>
+<testcase name="Supported Models 12375 SHAP ToolBox Model" classname="[chromium] › redis.spec.js › Supported Models › 12375 SHAP ToolBox Model" time="4.902">
+</testcase>
+<testcase name="Supported Models 12376 FMTC ToolBox Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12376 FMTC ToolBox Pipeline Model" time="6.042">
+</testcase>
+<testcase name="Supported Models 12377 Robustness ToolBox Image Pipeline Model" classname="[chromium] › redis.spec.js › Supported Models › 12377 Robustness ToolBox Image Pipeline Model" time="533.319">
 </testcase>
 </testsuite>
 </testsuites>
