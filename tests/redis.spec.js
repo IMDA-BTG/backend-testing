@@ -5,6 +5,7 @@ import { test, expect } from '@playwright/test'
 import fs from 'fs';
 import path from 'path';
 import { parse } from 'csv-parse/sync';
+import chmodr from 'chmodr';
 
 const models = parse(fs.readFileSync(path.join(__dirname, '../uploads/csv/narrowed_down_list._for_support.csv')), {
     columns: true,
@@ -52,6 +53,22 @@ test.describe('Test Engine Task', () => {
             fs.cpSync(backendTestFileDir + "/csv", hostTestDir + "/data", {recursive: true});
             fs.cpSync(backendTestFileDir + "/data", hostTestDir + "/data", {recursive: true});
             fs.cpSync(backendTestFileDir + "/model", hostTestDir + "/model", {recursive: true});
+
+            chmodr(hostTestDir + "/data", 0o777, (err) => {
+                if (err) {
+                    console.log('Failed to execute chmod', err);
+                } else {
+                    console.log('Success');
+                }
+            })
+            chmodr(hostTestDir + "/model", 0o777, (err) => {
+                if (err) {
+                    console.log('Failed to execute chmod', err);
+                } else {
+                    console.log('Success');
+                }
+            })
+
         } catch (err) {
             console.log("Copy file dirs error:", err)
         }
