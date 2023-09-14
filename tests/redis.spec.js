@@ -15,35 +15,18 @@ const models = parse(fs.readFileSync(path.join(__dirname, '../uploads/csv/narrow
 const URI = 'redis://127.0.0.1:6379'
 const connection = createClient({ URI })
 
-let task, validateDataset, validateModel, baseDir = process.env.BASEDIR
-
-let testFileDir = "/app/aiverify/uploads"
-
-
-// let testFileDir = () => {
-//     const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
-//     const backendTestFileDir = baseDir + "/qa-test/backend-testing/uploads"
-//     const hostTestDir = baseDir + "/uploads"
-//     try {
-//         console.log("Copying file dir "+sampleFileDir+" to "+hostTestDir)
-//         fs.cpSync(sampleFileDir + "/data", hostTestDir + "/data", {recursive: true});
-//         fs.cpSync(sampleFileDir + "/models", hostTestDir + "/model", {recursive: true});
-//
-//         fs.cpSync(backendTestFileDir + "/csv", hostTestDir + "/data", {recursive: true});
-//         fs.cpSync(backendTestFileDir + "/data", hostTestDir + "/data", {recursive: true});
-//         fs.cpSync(backendTestFileDir + "/model", hostTestDir + "/model", {recursive: true});
-//     }
-//     catch (err) {
-//         console.log("Copy file dirs error:", err)
-//     }
-//     return "/app/aiverify/uploads"
-// }
+let task, validateDataset, validateModel
+const baseDir = process.env.BASEDIR
+const dockerTest = process.env.DOCKERTEST?? false
+let aivUploadsDir = "/app/aiverify/uploads"
 
 test.describe('Test Engine Task', () => {
 
     test.beforeAll(() => {
+        //const sampleFileDir = baseDir + "/qa-test/aiverify-test-samples"
         const sampleFileDir = baseDir + "/qa-test/backend-testing/aiverify-test-samples"
         const backendTestFileDir = baseDir + "/qa-test/backend-testing/uploads"
+        //const hostTestDir = baseDir + "/mock-aiverify-2/uploads"
         const hostTestDir = baseDir + "/uploads"
         try {
             console.log("Copying file dir " + sampleFileDir + " to " + hostTestDir)
@@ -73,7 +56,11 @@ test.describe('Test Engine Task', () => {
             console.log("Copy file dirs error:", err)
         }
 
-        testFileDir = "/app/aiverify/uploads"
+        aivUploadsDir = "/app/aiverify/uploads"
+        // if (dockerTest)
+        //     aivUploadsDir = "/app/aiverify/uploads"
+        // else
+        //     aivUploadsDir = hostTestDir
     });
 
     // test.beforeAll(() => {
@@ -102,9 +89,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -152,9 +139,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/loan_comma.csv",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/loan_comma.csv",
+            "testDataset": aivUploadsDir + "/data/loan_comma.csv",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/loan_comma.csv",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -202,9 +189,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_insurance_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_insurance_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_insurance_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_insurance_testing.sav",
             "modelType": "regression",
             "groundTruth": "charges"
         })
@@ -252,9 +239,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "regression",
             "groundTruth": "Interest_Rate"
         })
@@ -302,9 +289,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_insurance_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_insurance_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -353,9 +340,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -403,9 +390,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -444,9 +431,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -490,9 +477,9 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30030",
             "algorithmId": "",
             "algorithmArgs": { "sensitive_feature": ["Gender", "Home_Owner"] },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -541,8 +528,8 @@ test.describe('Test Engine Task', () => {
                 "file_name_label": "NA"
             },
             "testDataset": "",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -590,9 +577,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelFile": "",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -640,8 +627,8 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
             "groundTruthDataset": "",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
@@ -690,9 +677,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "",
             "groundTruth": "Interest_Rate"
         })
@@ -740,9 +727,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": ""
         })
@@ -790,9 +777,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -840,9 +827,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -886,9 +873,9 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30038",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": { "annotated_ground_truth_path": "/path", "file_name_label": "file_name" },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -936,9 +923,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/combine_all.sh",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/combine_all.sh",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -986,9 +973,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/data/combine_all.sh",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/data/combine_all.sh",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -1036,9 +1023,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/combine_all.sh",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/combine_all.sh",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -1086,9 +1073,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "test",
             "groundTruth": "Interest_Rate"
         })
@@ -1136,9 +1123,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav",
             "modelType": "classification",
             "groundTruth": "two_year_recid"
         })
@@ -1186,9 +1173,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/loan_single_column.csv",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/loan_single_column.csv",
+            "testDataset": aivUploadsDir + "/data/loan_single_column.csv",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/loan_single_column.csv",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -1236,9 +1223,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/loan_incorrect_column_length.csv",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/loan_incorrect_column_length.csv",
+            "testDataset": aivUploadsDir + "/data/loan_incorrect_column_length.csv",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/loan_incorrect_column_length.csv",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -1286,9 +1273,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/loan_invalid_delimiter.csv",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/loan_invalid_delimiter.csv",
+            "testDataset": aivUploadsDir + "/data/loan_invalid_delimiter.csv",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/loan_invalid_delimiter.csv",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -1336,9 +1323,9 @@ test.describe('Test Engine Task', () => {
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": testFileDir + "/data/loan_missing_column.csv",
-            "modelFile": testFileDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": testFileDir + "/data/loan_missing_column.csv",
+            "testDataset": aivUploadsDir + "/data/loan_missing_column.csv",
+            "modelFile": aivUploadsDir + "/model/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "groundTruthDataset": aivUploadsDir + "/data/loan_missing_column.csv",
             "modelType": "classification",
             "groundTruth": "Interest_Rate"
         })
@@ -1383,7 +1370,7 @@ test.skip('Test Engine Service', () => {
 
         validateDataset = JSON.stringify({
             "serviceId": "service:64530",
-            "filePath": testFileDir + "/data/pickle_pandas_tabular_loan_testing.sav"
+            "filePath": aivUploadsDir + "/data/pickle_pandas_tabular_loan_testing.sav"
         })
 
         // Create Connection to App via Redis
@@ -1414,7 +1401,7 @@ test.skip('Test Engine Service', () => {
 
         validateDataset = JSON.stringify({
             "serviceId": "service:64531",
-            "filePath": testFileDir + "/data/combine_all.sh"
+            "filePath": aivUploadsDir + "/data/combine_all.sh"
         })
 
         // Create Connection to App via Redis
@@ -1447,7 +1434,7 @@ test.skip('Test Engine Service', () => {
         validateModel = JSON.stringify({
             "serviceId": "service:64530a39dc46da5656d1593k",
             "mode": "upload",
-            "filePath": testFileDir + "/model/pickle_scikit_multiclasslr_loan.sav"
+            "filePath": aivUploadsDir + "/model/pickle_scikit_multiclasslr_loan.sav"
         })
 
         // Create Connection to App via Redis
@@ -1502,9 +1489,9 @@ test.describe('Supported Models', () => {
                         "annotated_labels_path": annotated_labels_path[1],
                         "file_name_label": file_name_label[1]
                     },
-                    "testDataset": testFileDir + "/data/" + model.testDataset,
-                    "modelFile": testFileDir + "/model/" + model.modelFile,
-                    "groundTruthDataset": testFileDir + "/data/" + model.groundTruthDataset,
+                    "testDataset": aivUploadsDir + "/data/" + model.testDataset,
+                    "modelFile": aivUploadsDir + "/model/" + model.modelFile,
+                    "groundTruthDataset": aivUploadsDir + "/data/" + model.groundTruthDataset,
                     "modelType": model.modelType,
                     "groundTruth": model.groundTruth
                 })
@@ -1524,11 +1511,11 @@ test.describe('Supported Models', () => {
                         "explain_type": featureArgs[0].substring(featureArgs[0].indexOf(":") + 1),
                         "background_samples": parseInt(featureArgs[1].substring(featureArgs[1].indexOf(":") + 1)),
                         "data_samples": parseInt(featureArgs[2].substring(featureArgs[2].indexOf(":") + 1)),
-                        "background_path": testFileDir + "/data/" + featureArgs[3].substring(featureArgs[3].indexOf(":") + 1)
+                        "background_path": aivUploadsDir + "/data/" + featureArgs[3].substring(featureArgs[3].indexOf(":") + 1)
                     },
-                    "testDataset": testFileDir + "/data/" + model.testDataset,
-                    "modelFile": testFileDir + "/model/" + model.modelFile,
-                    "groundTruthDataset": testFileDir + "/data/" + model.groundTruthDataset,
+                    "testDataset": aivUploadsDir + "/data/" + model.testDataset,
+                    "modelFile": aivUploadsDir + "/model/" + model.modelFile,
+                    "groundTruthDataset": aivUploadsDir + "/data/" + model.groundTruthDataset,
                     "modelType": model.modelType,
                     "groundTruth": model.groundTruth
                 })
@@ -1545,9 +1532,9 @@ test.describe('Supported Models', () => {
                         "annotated_ground_truth_path": featureArgs[0].substring(featureArgs[0].indexOf(":") + 1),
                         "file_name_label": featureArgs[1].substring(featureArgs[1].indexOf(":") + 1),
                     },
-                    "testDataset": testFileDir + "/data/" + model.testDataset,
-                    "modelFile": testFileDir + "/model/" + model.modelFile,
-                    "groundTruthDataset": testFileDir + "/data/" + model.groundTruthDataset,
+                    "testDataset": aivUploadsDir + "/data/" + model.testDataset,
+                    "modelFile": aivUploadsDir + "/model/" + model.modelFile,
+                    "groundTruthDataset": aivUploadsDir + "/data/" + model.groundTruthDataset,
                     "modelType": model.modelType,
                     "groundTruth": model.groundTruth
                 })
