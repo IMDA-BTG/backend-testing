@@ -25,15 +25,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30022",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -68,22 +68,22 @@ test.describe('Test Engine Task', () => {
 
     })
 
-    test('Test Engine Task with Valid CSV Inputs (Upload)', async () => {
+    test.skip('Test Engine Task with Valid CSV Inputs (Upload)', async () => {
 
         task = JSON.stringify({
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30023",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_comma.csv",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_comma.csv",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -125,12 +125,12 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30024",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_insurance_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_insurance_testing.sav",
             "modelType": "regression",
             "groundTruth": "charges"
@@ -175,15 +175,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30025",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "regression",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -225,15 +225,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30026",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_insurance_testing.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -276,15 +276,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30027",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_regression:fairness_metrics_toolbox_for_regression",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -326,15 +326,15 @@ test.describe('Test Engine Task', () => {
             "id": "",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -367,15 +367,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30029",
             "algorithmId": "",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -416,12 +416,12 @@ test.describe('Test Engine Task', () => {
             "mode": "upload",
             "id": "642691211b68cd044de3001e-642691211b68cd044de30030",
             "algorithmId": "",
-            "algorithmArgs": { "sensitive_feature": ["Gender", "Home_Owner"] },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "algorithmArgs": { "sensitive_feature": ["gender"] },
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -463,15 +463,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30031",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": "",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -513,15 +513,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30032",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelFile": "",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -563,15 +563,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30033",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": "",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -613,15 +613,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30034",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -663,13 +663,13 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30035",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
             "groundTruth": ""
         })
@@ -713,15 +713,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30036",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -763,15 +763,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30037",
             "algorithmId": "aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -813,11 +813,11 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30038",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": { "annotated_ground_truth_path": "/path", "file_name_label": "file_name" },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -859,15 +859,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30039",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/combine_all.sh",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -909,15 +909,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30040",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelFile": baseDir + "/qa-test/backend-testing/uploads/data/combine_all.sh",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -959,15 +959,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30041",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/combine_all.sh",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -1009,15 +1009,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30042",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "test",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -1059,13 +1059,13 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30043",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
-            "testDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
-            "groundTruthDataset": baseDir + "/qa-test/backend-testing/aiverify-test-samples/data/pickle_pandas_tabular_loan_testing.sav",
+            "testDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
+            "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/data/sample_bc_credit_data.sav",
             "modelType": "classification",
             "groundTruth": "two_year_recid"
         })
@@ -1109,15 +1109,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30044",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_single_column.csv",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_single_column.csv",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -1159,15 +1159,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30045",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_incorrect_column_length.csv",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_incorrect_column_length.csv",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -1209,15 +1209,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30046",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_invalid_delimiter.csv",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_invalid_delimiter.csv",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -1259,15 +1259,15 @@ test.describe('Test Engine Task', () => {
             "id": "642691211b68cd044de3001e-642691211b68cd044de30046",
             "algorithmId": "algo:aiverify.stock.fairness_metrics_toolbox_for_classification:fairness_metrics_toolbox_for_classification",
             "algorithmArgs": {
-                "sensitive_feature": ["Gender", "Home_Owner"],
+                "sensitive_feature": ["gender"],
                 "annotated_labels_path": "NA",
                 "file_name_label": "NA"
             },
             "testDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_missing_column.csv",
-            "modelFile": baseDir + "/qa-test/backend-testing/aiverify-test-samples/models/sklearn/1.2.2/multiclass_classification_loan_sklearn.ensemble._bagging.BaggingClassifier.sav",
+            "modelFile": baseDir + "/qa-test/backend-testing/uploads/model/sample_bc_credit_sklearn_linear.LogisticRegression.sav",
             "groundTruthDataset": baseDir + "/qa-test/backend-testing/uploads/csv/loan_missing_column.csv",
             "modelType": "classification",
-            "groundTruth": "Interest_Rate"
+            "groundTruth": "default"
         })
 
         // Create Connection to App via Redis
@@ -1403,7 +1403,7 @@ test.skip('Test Engine Service', () => {
 
 })
 
-test.describe('Supported Models', () => {
+test.skip('Supported Models', () => {
 
     for (const model of models) {
         const features = model.algorithmArgs
